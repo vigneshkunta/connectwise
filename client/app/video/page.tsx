@@ -157,8 +157,25 @@ export default function VideoPage() {
     }
 
     const pc = new RTCPeerConnection({
-      iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+      iceServers: [
+        { urls: ["stun:bn-turn2.xirsys.com"] },
+        {
+          username:
+            "smg1otFfP67r96EtGmUC167Cy8ELfLOwdp7eGqGiWIso89XDyTLmGZfwtxXnGzHwAAAAAGkE1mt2aWduZXNo",
+          credential: "bb57ba70-b66e-11f0-a27d-0242ac140004",
+          urls: [
+            "turn:bn-turn2.xirsys.com:80?transport=udp",
+            "turn:bn-turn2.xirsys.com:3478?transport=udp",
+            "turn:bn-turn2.xirsys.com:80?transport=tcp",
+            "turn:bn-turn2.xirsys.com:3478?transport=tcp",
+            "turns:bn-turn2.xirsys.com:443?transport=tcp",
+            "turns:bn-turn2.xirsys.com:5349?transport=tcp",
+          ],
+        },
+      ],
+      iceTransportPolicy: "all",
     });
+
     peerRef.current = pc;
     incomingCandidatesRef.current = [];
 
